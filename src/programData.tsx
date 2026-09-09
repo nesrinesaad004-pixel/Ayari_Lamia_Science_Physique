@@ -3,10 +3,7 @@ import {
   Zap, 
   Waves, 
   Atom, 
-  FlaskConical,
-  FileText,
-  Download,
-  ChevronRight
+  FlaskConical
 } from "lucide-react";
 
 export interface Chapitre {
@@ -37,28 +34,28 @@ export const domainesData: Domaine[] = [
     chapitres: [
       {
         id: "cinematique",
-        titre: "Cinématique",
+        titre: "Cinématique du point matériel",
         description: "Mouvement, vitesse, accélération",
         pdfUrl: "/pdf/mecanique/cinematique.pdf",
         icon: <Car className="w-6 h-6" />
       },
       {
         id: "dynamique-newtonienne",
-        titre: "Dynamique newtonienne",
+        titre: "Dynamique newtonienne (1ère et 2ème loi)",
         description: "Lois de Newton, forces",
         pdfUrl: "/pdf/mecanique/dynamique.pdf",
         icon: <Car className="w-6 h-6" />
       },
       {
         id: "travail-energie",
-        titre: "Travail-énergie",
+        titre: "Travail et énergie cinétique",
         description: "Énergie cinétique, potentielle",
         pdfUrl: "/pdf/mecanique/energie.pdf",
         icon: <Car className="w-6 h-6" />
       },
       {
         id: "oscillateurs",
-        titre: "Oscillateurs mécaniques",
+        titre: "Oscillateurs mécaniques (libres, amortis, forcés)",
         description: "Oscillateurs libres et forcés",
         pdfUrl: "/pdf/mecanique/oscillateurs.pdf",
         icon: <Car className="w-6 h-6" />
@@ -74,23 +71,37 @@ export const domainesData: Domaine[] = [
     chapitres: [
       {
         id: "regime-transitoire",
-        titre: "Régime transitoire RC & RL",
+        titre: "Courant continu / régime transitoire (RC, RL)",
         description: "Circuits RC et RL",
         pdfUrl: "/pdf/electricite/transitoire.pdf",
         icon: <Zap className="w-6 h-6" />
       },
       {
         id: "oscillations-lc",
-        titre: "Oscillations LC",
+        titre: "Oscillations libres (LC)",
         description: "Circuit oscillant LC",
         pdfUrl: "/pdf/electricite/oscillations-lc.pdf",
         icon: <Zap className="w-6 h-6" />
       },
       {
+        id: "regime-sinusoidal",
+        titre: "Circuits en régime sinusoïdal forcé",
+        description: "Régime sinusoïdal",
+        pdfUrl: "/pdf/electricite/sinusoidal.pdf",
+        icon: <Zap className="w-6 h-6" />
+      },
+      {
         id: "filtres-resonance",
-        titre: "Filtres et résonance",
+        titre: "Filtres (passe-bas, passe-haut, passe-bande)",
         description: "Filtres passe-bas, résonance d'intensité",
         pdfUrl: "/pdf/electricite/filtres.pdf",
+        icon: <Zap className="w-6 h-6" />
+      },
+      {
+        id: "resonance-intensite",
+        titre: "Résonance d'intensité",
+        description: "Phénomène de résonance",
+        pdfUrl: "/pdf/electricite/resonance.pdf",
         icon: <Zap className="w-6 h-6" />
       }
     ]
@@ -98,7 +109,7 @@ export const domainesData: Domaine[] = [
   {
     id: "ondes-nucleaire",
     numero: "03",
-    titre: "Ondes & Nucléaire",
+    titre: "Physique ondulatoire & nucléaire",
     couleur: "green",
     description: "Propagation, interférences, radioactivité, fission & fusion.",
     chapitres: [
@@ -118,14 +129,14 @@ export const domainesData: Domaine[] = [
       },
       {
         id: "radioactivite",
-        titre: "Radioactivité",
+        titre: "Radioactivité et décroissance",
         description: "Décroissance radioactive",
         pdfUrl: "/pdf/nucleaire/radioactivite.pdf",
         icon: <Atom className="w-6 h-6" />
       },
       {
         id: "fission-fusion",
-        titre: "Fission & fusion",
+        titre: "Réactions nucléaires (fission / fusion)",
         description: "Réactions nucléaires",
         pdfUrl: "/pdf/nucleaire/fission-fusion.pdf",
         icon: <Atom className="w-6 h-6" />
@@ -141,7 +152,7 @@ export const domainesData: Domaine[] = [
     chapitres: [
       {
         id: "suivi-temporel",
-        titre: "Suivi temporel",
+        titre: "Suivi temporel d'une transformation",
         description: "Cinétique chimique",
         pdfUrl: "/pdf/chimie/suivi-temporel.pdf",
         icon: <FlaskConical className="w-6 h-6" />
@@ -155,21 +166,21 @@ export const domainesData: Domaine[] = [
       },
       {
         id: "acide-base",
-        titre: "Acide-base",
+        titre: "Réactions acide-base",
         description: "pH, solutions acides et basiques",
         pdfUrl: "/pdf/chimie/acide-base.pdf",
         icon: <FlaskConical className="w-6 h-6" />
       },
       {
         id: "dosages",
-        titre: "Dosages",
+        titre: "Dosages (pH-métrique, colorimétrique)",
         description: "Titrages et dosages",
         pdfUrl: "/pdf/chimie/dosages.pdf",
         icon: <FlaskConical className="w-6 h-6" />
       },
       {
         id: "chimie-organique",
-        titre: "Chimie organique",
+        titre: "Chimie organique (esters, savons)",
         description: "Composés organiques",
         pdfUrl: "/pdf/chimie/organique.pdf",
         icon: <FlaskConical className="w-6 h-6" />
