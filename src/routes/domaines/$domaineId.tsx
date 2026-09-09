@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { domainesData } from "../../../programData";
+import { domainesData } from "../../programData";
 import { FileText, Video, ImageIcon, ArrowLeft } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
