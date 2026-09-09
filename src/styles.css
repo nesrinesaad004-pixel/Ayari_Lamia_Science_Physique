@@ -1,0 +1,132 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — "Carnet de laboratoire pastel"
+ * Paper background, ink navy text, four subject colors.
+ * All colors in oklch. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-serif: "Spectral", Georgia, serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-meca: var(--meca);
+  --color-elec: var(--elec);
+  --color-ondes: var(--ondes);
+  --color-chimie: var(--chimie);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+}
+
+:root {
+  --radius: 1rem;
+
+  --paper: oklch(0.955 0.012 90);
+  --ink: oklch(0.29 0.045 265);
+  --meca: oklch(0.55 0.11 255);
+  --elec: oklch(0.71 0.13 65);
+  --ondes: oklch(0.61 0.11 150);
+  --chimie: oklch(0.58 0.12 293);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.99 0.006 90);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.99 0.006 90);
+  --popover-foreground: var(--ink);
+  --primary: var(--meca);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.93 0.014 90);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.93 0.014 90);
+  --muted-foreground: oklch(0.5 0.03 265);
+  --accent: oklch(0.93 0.02 255);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.58 0.2 25);
+  --destructive-foreground: oklch(0.99 0.004 90);
+  --border: oklch(0.29 0.045 265 / 12%);
+  --input: oklch(0.29 0.045 265 / 18%);
+  --ring: oklch(0.55 0.11 255 / 50%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-sans);
+  }
+}
+
+/* Squared lab-notebook paper */
+@utility notebook {
+  background-color: oklch(0.972 0.01 92);
+  background-image:
+    linear-gradient(oklch(0.55 0.11 255 / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.55 0.11 255 / 0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Frosted card surface */
+@utility glass {
+  background: oklch(1 0 0 / 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+@keyframes tick {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@utility tick {
+  animation: tick 1.6s ease-in-out infinite;
+}
