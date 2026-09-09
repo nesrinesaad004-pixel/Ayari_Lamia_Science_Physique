@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { domainsData } from "../../data/programData";
-import { FileText, Download, ChevronRight, ArrowLeft } from "lucide-react";
+import { domainesData } from "../../data/programData";
+import { FileText, Video, ImageIcon, ArrowLeft } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/domaines/$domaineId")({
@@ -51,7 +51,7 @@ function DomaineDetail() {
           </div>
         </div>
 
-        {/* Liste des chapitres */}
+        {/* Liste des chapitres avec liens */}
         <div className="grid gap-4">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Chapitres du programme</h2>
           
@@ -77,30 +77,22 @@ function DomaineDetail() {
                   
                   <p className="text-gray-600 mb-4">{chapitre.description}</p>
                   
-                  <div className="flex gap-3">
-                    {chapitre.pdfUrl && (
-                      <a
-                        href={chapitre.pdfUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium"
->
-                        <FileText className="w-4 h-4" />
-                        PDF
-                      </a>
-                    )}
-                    <button className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium">
-                      <Download className="w-4 h-4" />
-                      Télécharger
+                  {/* Liens PDF, Vidéo, Schémas */}
+                  <div className="flex flex-wrap gap-3">
+                    <button className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium">
+                      <FileText className="w-4 h-4" />
+                      Cours PDF
                     </button>
                     <button className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors font-medium">
-                      <FileText className="w-4 h-4" />
-                      Voir le cours
+                      <Video className="w-4 h-4" />
+                      Vidéo explicative
+                    </button>
+                    <button className="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors font-medium">
+                      <ImageIcon className="w-4 h-4" />
+                      Schémas
                     </button>
                   </div>
                 </div>
-                
-                <ChevronRight className="w-6 h-6 text-gray-400" />
               </div>
             </div>
           ))}
@@ -109,3 +101,5 @@ function DomaineDetail() {
     </div>
   );
 }
+
+export default DomaineDetail;
