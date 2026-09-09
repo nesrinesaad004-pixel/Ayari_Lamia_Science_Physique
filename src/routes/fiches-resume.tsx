@@ -17,7 +17,7 @@ export const Route = createFileRoute("/fiches-resume")({
       },
     ],
   }),
-  component: FichesResume;
+  component: FichesResume,
 });
 
 function FichesResume() {
