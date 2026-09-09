@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { domainesData } from "../../programData";
 import { FileText, Video, ImageIcon, ArrowLeft } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 
 export const Route = createFileRoute("/domaines/$domaineId")({
   component: DomaineDetail,
@@ -10,10 +11,22 @@ export const Route = createFileRoute("/domaines/$domaineId")({
 function DomaineDetail() {
   const { domaineId } = Route.useParams();
   const domaine = domainesData.find((d) => d.id === domaineId);
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
 
   if (!domaine) {
     return <div>Domaine non trouvé</div>;
   }
+
+  // Fonction pour ouvrir le fichier PDF sélectionné
+  const handlePdfUpload = (event: React.ChangeEvent<HTMLInputElement>, chapitreTitre: string) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === "application/pdf") {
+      const url = URL.createObjectURL(file);
+      window.open(url, "_blank"); // Ouvre le PDF dans un nouvel onglet
+    } else if (file) {
+      alert("Veuillez sélectionner un fichier PDF valide.");
+    }
+  };
 
   const couleurs = {
     blue: "bg-blue-50 border-blue-200 text-blue-900",
@@ -51,7 +64,7 @@ function DomaineDetail() {
           </div>
         </div>
 
-        {/* Liste des chapitres avec liens */}
+        {/* Liste des chapitres avec boutons */}
         <div className="grid gap-4">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Chapitres du programme</h2>
           
@@ -77,12 +90,20 @@ function DomaineDetail() {
                   
                   <p className="text-gray-600 mb-4">{chapitre.description}</p>
                   
-                  {/* Liens PDF, Vidéo, Schémas */}
+                  {/* Boutons avec input file caché */}
                   <div className="flex flex-wrap gap-3">
-                    <button className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium">
+                    {/* Bouton PDF - Ouvre l'explorateur de fichiers */}
+                    <label className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium cursor-pointer">
                       <FileText className="w-4 h-4" />
                       Cours PDF
-                    </button>
+                      <input
+                        type="file"
+                        accept=".pdf,application/pdf"
+                        className="hidden"
+                        onChange={(e) => handlePdfUpload(e, chapitre.titre)}
+                      />
+                    </label>
+                    
                     <button className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors font-medium">
                       <Video className="w-4 h-4" />
                       Vidéo explicative
