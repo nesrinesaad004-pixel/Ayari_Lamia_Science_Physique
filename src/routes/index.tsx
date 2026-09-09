@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Countdown } from "../components/site/Countdown";
 import { TipOfTheDay } from "../components/site/TipOfTheDay";
-import { domainesData } from "../programData";
-import { FileText, Video, Image as ImageIcon, ChevronRight } from "lucide-react";
+import { domainesData } from "../data/programData";
+import { ChevronRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,30 +24,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const ring: Record<string, string> = {
-  blue: "hover:ring-blue-300/40",
-  orange: "hover:ring-orange-300/40",
-  green: "hover:ring-green-300/40",
-  purple: "hover:ring-purple-300/40",
-};
-const badge: Record<string, string> = {
-  blue: "bg-blue-100 text-blue-700",
-  orange: "bg-orange-100 text-orange-700",
-  green: "bg-green-100 text-green-700",
-  purple: "bg-purple-100 text-purple-700",
-};
-const soft: Record<string, string> = {
-  blue: "bg-blue-50 text-blue-600",
-  orange: "bg-orange-50 text-orange-600",
-  green: "bg-green-50 text-green-600",
-  purple: "bg-purple-50 text-purple-600",
-};
-const noteTone: Record<string, string> = {
-  blue: "text-blue-600/70",
-  orange: "text-orange-600/70",
-  green: "text-green-600/70",
-  purple: "text-purple-600/70",
-};
 const dotColor: Record<string, string> = {
   blue: "bg-blue-500",
   orange: "bg-orange-500",
@@ -99,7 +75,7 @@ function Index() {
             </div>
           </section>
 
-          {/* DOMAINS */}
+          {/* DOMAINS - Juste les titres des chapitres */}
           <section>
             <div className="mb-5 flex items-end justify-between">
               <h2 className="font-sans text-xl font-semibold tracking-tight">
@@ -113,24 +89,21 @@ function Index() {
                   key={d.id}
                   to="/domaines/$domaineId"
                   params={{ domaineId: d.id }}
-                  className={`group glass rounded-3xl p-5 ring-1 ring-black/5 transition-transform hover:-translate-y-1 ${ring[d.couleur]}`}
+                  className="group glass rounded-3xl p-5 ring-1 ring-black/5 transition-transform hover:-translate-y-1"
                 >
-                  <div className="flex items-center justify-between">
-                    <span
-                      className={`rounded-full px-2.5 py-1 font-mono text-xs font-bold ${badge[d.couleur]}`}
-                    >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className={`rounded-full px-2.5 py-1 font-mono text-xs font-bold bg-${d.couleur}-100 text-${d.couleur}-700`}>
                       {d.numero}
                     </span>
-                    <span
-                      className={`rounded-full px-2 py-0.5 font-sans text-[11px] font-medium ${soft[d.couleur]}`}
-                    >
+                    <span className={`rounded-full px-2 py-0.5 font-sans text-[11px] font-medium bg-${d.couleur}-50 text-${d.couleur}-600`}>
                       {d.chapitres.length} CHAPITRES
                     </span>
                   </div>
-                  <p className="mt-4 font-sans text-lg font-semibold tracking-tight">{d.titre}</p>
+                  
+                  <p className="font-sans text-lg font-semibold tracking-tight mb-3">{d.titre}</p>
 
-                  {/* Liste des chapitres avec puces */}
-                  <ul className="mt-3 space-y-1.5">
+                  {/* Juste la liste des chapitres */}
+                  <ul className="space-y-2">
                     {d.chapitres.map((chap) => (
                       <li key={chap.id} className="flex items-start gap-2 text-sm text-gray-700/80">
                         <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${dotColor[d.couleur]}`}></span>
@@ -139,37 +112,8 @@ function Index() {
                     ))}
                   </ul>
 
-                  {/* Liens cliquables en bas */}
-                  <div className="mt-4 flex flex-wrap items-center gap-3 text-xs">
-                    {d.chapitres.map((chap) =>
-                      chap.pdfUrl ? (
-                        <a
-                          key={chap.id}
-                          href={chap.pdfUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-1 rounded-full px-2 py-1 font-medium transition-colors hover:bg-gray-100 ${noteTone[d.couleur]}`}
-                          title={`Télécharger le cours : ${chap.titre}`}
-                        >
-                          <FileText className="w-3.5 h-3.5" />
-                          <span className="font-mono">{chap.titre.split(" ")[0]}</span>
-                        </a>
-                      ) : null
-                    )}
-                    <span className="text-gray-400">·</span>
-                    <span className="inline-flex items-center gap-1 text-gray-500">
-                      <Video className="w-3.5 h-3.5" />
-                      Vidéo explicative
-                    </span>
-                    <span className="text-gray-400">·</span>
-                    <span className="inline-flex items-center gap-1 text-gray-500">
-                      <ImageIcon className="w-3.5 h-3.5" />
-                      Schémas
-                    </span>
-                  </div>
-
-                  {/* Flèche vers la page du domaine */}
-                  <div className={`mt-3 inline-flex items-center gap-1 font-mono text-xs ${noteTone[d.couleur]}`}>
+                  {/* Lien vers la page détail */}
+                  <div className={`mt-4 inline-flex items-center gap-1 font-mono text-xs text-${d.couleur}-600/70`}>
                     Voir tous les chapitres
                     <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -244,3 +188,5 @@ function Index() {
     </div>
   );
 }
+
+export default Index;
