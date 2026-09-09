@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Countdown } from "../components/site/Countdown";
 import { TipOfTheDay } from "../components/site/TipOfTheDay";
-import { domainesData } from "../data/programData";
+import { domainesData } from "../programData";
 import { FileText, Video, Image as ImageIcon, ChevronRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
